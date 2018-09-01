@@ -26,14 +26,11 @@ public class EnemyMovement : MonoBehaviour {
 
     IEnumerator MoveEnemy()
     {
-        print("Starting Patrol");
         foreach (Waypoint waypoint in path)
         {
             this.transform.position = waypoint.transform.position + new Vector3(5f, 0f, 10f);
-            print("Currently on Cube: " + waypoint);
             yield return new WaitForSeconds(timeBetweenMovement);
         }
-        print("Finished Patrol");
     }
 
 }
