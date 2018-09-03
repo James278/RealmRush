@@ -25,7 +25,7 @@ public class CubeEditor : MonoBehaviour {
         SnapCubeToGrid();
 
         UpdateLabel();
-
+        
     }
 
     private void SnapCubeToGrid()
@@ -33,20 +33,18 @@ public class CubeEditor : MonoBehaviour {
         int gridSize = waypoint.GetGridSize();
 
         transform.position = new Vector3(
-            waypoint.GetGridPos().x,
-            0, 
-            waypoint.GetGridPos().y); // still the z position
+            waypoint.GetGridPos().x * gridSize,
+            0f, 
+            waypoint.GetGridPos().y * gridSize); // still the z position
     }
 
     private void UpdateLabel()
     {
-        int gridSize = waypoint.GetGridSize();
 
         TextMesh textMesh = gameObject.GetComponentInChildren<TextMesh>();
-        string cubeLabel = waypoint.GetGridPos().x / 
-                           gridSize + "," +    
-                           waypoint.GetGridPos().y / 
-                           gridSize;
+        string cubeLabel = waypoint.GetGridPos().x 
+                           + "," +    
+                           waypoint.GetGridPos().y;
 
         textMesh.text = cubeLabel;
 

@@ -7,11 +7,21 @@ public class Pathfinder : MonoBehaviour {
 
     Dictionary<Vector2Int, Waypoint> worldGrid = new Dictionary<Vector2Int, Waypoint>();
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField] Waypoint startPoint, endPoint;
+
+    Vector2Int[] directions = {
+       Vector2Int.up,
+       Vector2Int.left,
+       Vector2Int.right,
+       Vector2Int.down
+    };
+
+    // Use this for initialization
+    void Start () {
 
         LoadBlocks();
-		
+        ColourStartAndEnd();
+        ExploreNeighbours();
 	}
 
     private void LoadBlocks()
@@ -19,7 +29,7 @@ public class Pathfinder : MonoBehaviour {
         Array waypoints = FindObjectsOfType<Waypoint>();
         foreach(Waypoint waypoint in waypoints)
         {
-            Vector2Int gridPos = waypoint.GetGridPos();
+            var gridPos = waypoint.GetGridPos();
 
             if (worldGrid.ContainsKey(gridPos))
             {
@@ -28,13 +38,32 @@ public class Pathfinder : MonoBehaviour {
             else
             {
                 worldGrid.Add(gridPos, waypoint);
+                
             }
         }
-        print("Loaded cubes: " + worldGrid.Count);
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    private void ColourStartAndEnd()
+    {
+        startPoint.SetColour(Color.white);
+
+        endPoint.SetColour(Color.green);
+    }
+
+    private void ExploreNeighbours()
+    {
+        foreach (Vector2Int direction in directions) 
+        {
+            Vector2Int neighbours = startPoint.GetGridPos() + direction;
+            try
+            {
+                worldGrid[neighbours].SetColour(Color.cyan);
+            }
+            catch
+            {
+                print ("No neighbours found at " + neighbours);
+            }
+        }
+    }
+    
 }

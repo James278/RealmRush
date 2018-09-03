@@ -225,9 +225,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1128868131601252}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: -10}
-  m_LocalScale: {x: 9.500033, y: 9.5, z: 9.500033}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10, y: 0, z: 20}
+  m_LocalScale: {x: 9.500053, y: 9.5, z: 9.500053}
   m_Children:
   - {fileID: 4205081454552750}
   - {fileID: 4295493429439966}
@@ -642,7 +642,7 @@ TextMesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760092599657748}
-  m_Text: 1,-1
+  m_Text: -1,2
   m_OffsetZ: 0
   m_CharacterSize: 0.045
   m_LineSpacing: 1
@@ -667,7 +667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732bec9796398664a914410dd360497e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 10
 --- !u!114 &114621734763289040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -679,3 +678,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb13956b949b4ab43bb41ffd831d1ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
