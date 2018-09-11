@@ -8,7 +8,11 @@ public class Pathfinder : MonoBehaviour {
     Dictionary<Vector2Int, Waypoint> worldGrid = new Dictionary<Vector2Int, Waypoint>();
     Queue<Waypoint> queue = new Queue<Waypoint>();
 
-    [SerializeField] bool isRunning = true;
+    Waypoint searchCenter;
+
+    bool isRunning = true;
+
+    [SerializeField] List<Waypoint> path = new List<Waypoint>();
 
     [SerializeField] Waypoint startPoint, endPoint;
 
@@ -19,14 +23,14 @@ public class Pathfinder : MonoBehaviour {
        Vector2Int.down
     };
 
-    // Use this for initialization
-    void Start () {
-
+    public List<Waypoint> GetPath()
+    {
         LoadBlocks();
         ColourStartAndEnd();
-        Pathfind();
-        //ExploreNeighbours();
-	}
+        BreadthFirstSearch();
+        CreatePath();
+        return path;
+    }
 
     private void LoadBlocks()
     {
@@ -54,43 +58,82 @@ public class Pathfinder : MonoBehaviour {
         endPoint.SetColour(Color.green);
     }
 
-    private void ExploreNeighbours()
-    {
-        foreach (Vector2Int direction in directions) 
-        {
-            Vector2Int neighbours = startPoint.GetGridPos() + direction;
-
-            try
-            {
-                worldGrid[neighbours].SetColour(Color.cyan);
-            }
-            catch
-            {
-                print ("No neighbours found at " + neighbours);
-            }
-        }
-    }
-
-    private void Pathfind()
+    private void BreadthFirstSearch()
     {
         queue.Enqueue(startPoint);
         while (queue.Count >= Mathf.Epsilon && isRunning)
         {
-            Waypoint searchCenter = queue.Dequeue();
+            searchCenter = queue.Dequeue();
+            searchCenter.isExplored = true;
             print("Searching from " + searchCenter);
 
-            HaltIfEndPointFound(searchCenter);
+            HaltIfEndPointFound();
+            ExploreNeighbours();
         }
         print("Outside of algorithm");
     }
 
-    void HaltIfEndPointFound(Waypoint searchCenter)
+    void HaltIfEndPointFound()
     {
         if (searchCenter == endPoint)
         {
             print("EndPoint found. Get outta here!");
             isRunning = false;
         }
+    }
+
+    private void ExploreNeighbours()
+    {
+        if (!isRunning)
+        {
+            return;
+        }
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int neighbour = searchCenter.GetGridPos() + direction;
+
+            if (worldGrid.ContainsKey(neighbour))
+            {
+                QueueNewNeighbours(neighbour);
+            }
+            else
+            {
+                print("No neighbours found at " + neighbour);
+            }
+        }
+    }
+
+    private void QueueNewNeighbours(Vector2Int neighbour)
+    {
+        if (worldGrid[neighbour].isExplored || queue.Contains(worldGrid[neighbour]))
+        {
+            print(worldGrid[neighbour] + " already explored");
+            return;
+        }
+        else
+        {
+            queue.Enqueue(worldGrid[neighbour]);
+            worldGrid[neighbour].exploredFrom = searchCenter;
+
+            print("Queueing " + worldGrid[neighbour]);
+        }
+        
+    }
+
+    private void CreatePath()
+    {
+        path.Add(endPoint);
+
+        Waypoint previous = endPoint.exploredFrom;
+
+        while (previous != startPoint)
+        {
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+
+        path.Add(startPoint);
+        path.Reverse();
     }
 
 }
