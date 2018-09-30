@@ -65,7 +65,7 @@ public class Pathfinder : MonoBehaviour {
         {
             searchCenter = queue.Dequeue();
             searchCenter.isExplored = true;
-            print("Searching from " + searchCenter);
+         //   print("Searching from " + searchCenter);
 
             HaltIfEndPointFound();
             ExploreNeighbours();
@@ -107,7 +107,7 @@ public class Pathfinder : MonoBehaviour {
     {
         if (worldGrid[neighbour].isExplored || queue.Contains(worldGrid[neighbour]))
         {
-            print(worldGrid[neighbour] + " already explored");
+      //      print(worldGrid[neighbour] + " already explored");
             return;
         }
         else
@@ -115,7 +115,7 @@ public class Pathfinder : MonoBehaviour {
             queue.Enqueue(worldGrid[neighbour]);
             worldGrid[neighbour].exploredFrom = searchCenter;
 
-            print("Queueing " + worldGrid[neighbour]);
+      //      print("Queueing " + worldGrid[neighbour]);
         }
         
     }

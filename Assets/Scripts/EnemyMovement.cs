@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour {
 
     [Range(0f, 10f)]
-    [SerializeField] float timeBetweenMovement = 1f;
+    [SerializeField] int timeBetweenMovement = 1;
 
 	// Use this for initialization
 	void Start ()
