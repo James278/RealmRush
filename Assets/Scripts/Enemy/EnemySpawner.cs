@@ -2,25 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour {
+public class EnemySpawner : MonoBehaviour
+{
 
+    [Range(1f, 60f)]
     [SerializeField] float secondsBetweenSpawns = 2f;
 
     public EnemyMovement enemyPrefab;
 
     // Use this for initialization
-    void Start () {
-
+    void Start()
+    {
+        
         SpawnEnemy();
 
         StartCoroutine(enemySpawner());
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    }
 
     void SpawnEnemy()
     {

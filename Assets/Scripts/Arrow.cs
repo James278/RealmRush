@@ -1,13 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour {
 
-    [SerializeField] Transform targetEnemy;
+    // Parameters of each tower
     [SerializeField] Transform arrowDirection;
     [SerializeField] float attackRange = 5f;
     [SerializeField] ParticleSystem theArrow;
+
+    // States of each tower
+    Transform targetEnemy;
 
     float distanceToEnemy;
 
@@ -20,6 +24,8 @@ public class Arrow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        SetTargetEnemy();
+
         if (targetEnemy)
         {
             arrowDirection.LookAt(targetEnemy);
@@ -30,6 +36,37 @@ public class Arrow : MonoBehaviour {
             Shoot(false);
         }
 
+    }
+
+    void SetTargetEnemy()
+    {
+        var sceneEnemies = FindObjectsOfType<EnemyDamage>();
+        if (sceneEnemies.Length <= 0)
+        {
+            return;
+        }
+
+        Transform closestEnemy = sceneEnemies[0].transform;
+
+        foreach (EnemyDamage testEnemy in sceneEnemies)
+        {
+            closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
+        }
+
+        targetEnemy = closestEnemy;
+
+    }
+
+    private Transform GetClosest(Transform transformA, Transform transformB)
+    {
+        var distanceToA = Vector3.Distance(transform.position, transformA.position);
+        var distanceToB = Vector3.Distance(transform.position, transformB.position);
+
+        if (distanceToA < distanceToB)
+        {
+            return transformA;
+        }
+        return transformB;
     }
 
     private void ToggleFiring()

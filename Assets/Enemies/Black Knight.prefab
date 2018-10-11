@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCollider: {fileID: 65529057570014580}
   healthPoints: 5
-  blood: {fileID: 198965500819759010}
+  blood: {fileID: 1468252362905456}
   bloodDuration: 1
 --- !u!198 &198965500819759010
 ParticleSystem:
