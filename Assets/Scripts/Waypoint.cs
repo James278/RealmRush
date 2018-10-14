@@ -5,9 +5,15 @@ using UnityEngine;
 public class Waypoint : MonoBehaviour {
 
     public bool isExplored = false;
+    public bool isPlaceable = true;
     public Waypoint exploredFrom;
 
+    int towerLimit = 3;
+
+    [SerializeField] GameObject towerPrefab;
+
     const int gridSize = 10;
+
 
     public int GetGridSize()
     {
@@ -32,7 +38,21 @@ public class Waypoint : MonoBehaviour {
 
     private void OnMouseOver()
     {
-        print("Mouse is over " + gameObject.name);
+
+        if (Input.GetMouseButtonDown(0) && isPlaceable && towerLimit > 0)
+        {
+            PlaceTower();
+        }
+        else if (Input.GetMouseButtonDown(0) && isPlaceable == false)
+        {
+            print("Tower not placeable here");
+        }
     }
 
+    private void PlaceTower()
+    {
+        Instantiate(towerPrefab, transform.position + new Vector3(5f, 0f, 10f), Quaternion.identity);
+        isPlaceable = false;
+        towerLimit--;
+    }
 }
