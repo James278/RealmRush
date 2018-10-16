@@ -7,11 +7,13 @@ public class EnemyMovement : MonoBehaviour {
     [Range(0f, 10f)]
     [SerializeField] int timeBetweenMovement = 1;
 
-	// Use this for initialization
-	void Start ()
+    [SerializeField] List<Waypoint> enemyPath;
+
+    // Use this for initialization
+    void Start ()
     {
         Pathfinder pathfinder = GameObject.Find("World").GetComponent<Pathfinder>();
-        List<Waypoint> enemyPath = pathfinder.GetPath();
+        enemyPath = pathfinder.GetPath();
 
         StartCoroutine(MoveEnemy(enemyPath));
 

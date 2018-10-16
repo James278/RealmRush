@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        Instantiate(enemyPrefab, transform.position, Quaternion.Euler(new Vector3(0, 180f, 0)));
     }
 
     IEnumerator enemySpawner()

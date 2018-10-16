@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour {
 
     [SerializeField] Collider enemyCollider;
+    [SerializeField] ParticleSystem deathBlood;
 
     [SerializeField] int healthPoints = 5;
 
-    [SerializeField] GameObject blood;
+    [SerializeField] ParticleSystem blood;
     [SerializeField] float bloodDuration = 1f;
 
     // Use this for initialization
@@ -20,25 +21,21 @@ public class EnemyDamage : MonoBehaviour {
     private void OnParticleCollision(GameObject other)
     {
 
-     //   Destroy(other);
-        StartCoroutine(toggleBlood());
+        blood.Play();
 
         if (healthPoints > 1) {
             healthPoints--;
         }
         else 
         {
+            var deathBloodFX = Instantiate(deathBlood, transform.position + new Vector3(0f, 2f, 0f), Quaternion.identity);
+            deathBloodFX.Play();
             Destroy(gameObject);
         }
 
         
     }
 
-    IEnumerator toggleBlood()
-    {
-        blood.SetActive(true);
-        yield return new WaitForSeconds(bloodDuration);
-        blood.SetActive(false);
-    }
+ 
 
 }

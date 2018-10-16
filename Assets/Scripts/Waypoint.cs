@@ -8,8 +8,6 @@ public class Waypoint : MonoBehaviour {
     public bool isPlaceable = true;
     public Waypoint exploredFrom;
 
-    int towerLimit = 3;
-
     [SerializeField] GameObject towerPrefab;
 
     const int gridSize = 10;
@@ -39,7 +37,7 @@ public class Waypoint : MonoBehaviour {
     private void OnMouseOver()
     {
 
-        if (Input.GetMouseButtonDown(0) && isPlaceable && towerLimit > 0)
+        if (Input.GetMouseButtonDown(0) && isPlaceable)
         {
             PlaceTower();
         }
@@ -53,6 +51,5 @@ public class Waypoint : MonoBehaviour {
     {
         Instantiate(towerPrefab, transform.position + new Vector3(5f, 0f, 10f), Quaternion.identity);
         isPlaceable = false;
-        towerLimit--;
     }
 }
