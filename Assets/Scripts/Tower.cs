@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour {
 
-    [SerializeField] Transform targetEnemy;
-    [SerializeField] Transform tower;
+    public Waypoint baseWaypoint;
 
     private void Start()
     {
@@ -14,9 +13,6 @@ public class Tower : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-
-        tower.LookAt(targetEnemy);
         
         
         

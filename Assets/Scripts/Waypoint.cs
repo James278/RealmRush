@@ -8,8 +8,6 @@ public class Waypoint : MonoBehaviour {
     public bool isPlaceable = true;
     public Waypoint exploredFrom;
 
-    [SerializeField] GameObject towerPrefab;
-
     const int gridSize = 10;
 
 
@@ -39,17 +37,11 @@ public class Waypoint : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) && isPlaceable)
         {
-            PlaceTower();
+            FindObjectOfType<TowerFactory>().AddTower(this); // this waypoint
         }
         else if (Input.GetMouseButtonDown(0) && isPlaceable == false)
         {
             print("Tower not placeable here");
         }
-    }
-
-    private void PlaceTower()
-    {
-        Instantiate(towerPrefab, transform.position + new Vector3(5f, 0f, 10f), Quaternion.identity);
-        isPlaceable = false;
     }
 }

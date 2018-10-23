@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     [Range(1f, 60f)]
     [SerializeField] float secondsBetweenSpawns = 2f;
 
+    [SerializeField] Transform enemyParent;
+
     public EnemyMovement enemyPrefab;
 
     // Use this for initialization
@@ -22,7 +24,8 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, transform.position, Quaternion.Euler(new Vector3(0, 180f, 0)));
+        var newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.Euler(new Vector3(0, 180f, 0)));
+        newEnemy.transform.parent = enemyParent;
     }
 
     IEnumerator enemySpawner()

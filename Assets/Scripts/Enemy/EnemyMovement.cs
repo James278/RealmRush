@@ -5,26 +5,23 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour {
 
     [Range(0f, 10f)]
-    [SerializeField] int timeBetweenMovement = 1;
+    [SerializeField] float timeBetweenMovement = 1;
 
     [SerializeField] List<Waypoint> enemyPath;
+
+    public PlayerCastle playerCastle;
 
     // Use this for initialization
     void Start ()
     {
-        Pathfinder pathfinder = GameObject.Find("World").GetComponent<Pathfinder>();
+        playerCastle = FindObjectOfType<PlayerCastle>();
+
+        Pathfinder pathfinder = UnityEngine.GameObject.Find("World").GetComponent<Pathfinder>();
         enemyPath = pathfinder.GetPath();
 
         StartCoroutine(MoveEnemy(enemyPath));
 
     }
-
-    // Update is called once per frame
-    void Update () {
-
-      
-		
-	}
 
     IEnumerator MoveEnemy(List<Waypoint> path)
     {
@@ -33,6 +30,9 @@ public class EnemyMovement : MonoBehaviour {
             this.transform.position = waypoint.transform.position + new Vector3(5f, 0f, 10f);
             yield return new WaitForSeconds(timeBetweenMovement);
         }
+
+        playerCastle.DecreaseHealth();
+
     }
 
 }

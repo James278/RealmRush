@@ -10,15 +10,8 @@ public class EnemyDamage : MonoBehaviour {
     [SerializeField] int healthPoints = 5;
 
     [SerializeField] ParticleSystem blood;
-    [SerializeField] float bloodDuration = 1f;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    private void OnParticleCollision(GameObject other)
+    private void OnParticleCollision(UnityEngine.GameObject other)
     {
 
         blood.Play();
@@ -30,6 +23,10 @@ public class EnemyDamage : MonoBehaviour {
         {
             var deathBloodFX = Instantiate(deathBlood, transform.position + new Vector3(0f, 2f, 0f), Quaternion.identity);
             deathBloodFX.Play();
+
+            float deathFXDelay = deathBloodFX.main.duration + 0.2f;
+
+            Destroy(deathBloodFX.gameObject, deathFXDelay);
             Destroy(gameObject);
         }
 

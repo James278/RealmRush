@@ -52,6 +52,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4592977791315030}
+  - component: {fileID: 114490333373929322}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -173,6 +174,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101613966980026}
   m_Mesh: {fileID: 4300000, guid: ff7c26738294ded4690edbbcefca3ba5, type: 3}
+--- !u!114 &114490333373929322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191734630948182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d657511252a704489d2c13302247eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114895734179190126
 MonoBehaviour:
   m_ObjectHideFlags: 1

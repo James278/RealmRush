@@ -185,8 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d9a6983409df140a107f968456a829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenMovement: 1
+  timeBetweenMovement: 0.39
   enemyPath: []
+  playerCastle: {fileID: 0}
 --- !u!114 &114258695741353054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,9 +202,8 @@ MonoBehaviour:
   enemyCollider: {fileID: 65529057570014580}
   deathBlood: {fileID: 198998869185713844, guid: a8d3b4ecafb68dd4198b2ba1be021f0b,
     type: 2}
-  healthPoints: 5
+  healthPoints: 4
   blood: {fileID: 198965500819759010}
-  bloodDuration: 1
 --- !u!198 &198965500819759010
 ParticleSystem:
   m_ObjectHideFlags: 1
