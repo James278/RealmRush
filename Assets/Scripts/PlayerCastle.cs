@@ -1,30 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCastle : MonoBehaviour {
 
     [SerializeField] int castleHealth = 10;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    [SerializeField] Text healthText;
 
-      
-		
-	}
-
-    public void DecreaseHealth()
+    private void Start()
     {
-        castleHealth--;
+        healthText.text = castleHealth.ToString();
+    }
+
+    public void DecreaseHealth(int damage)
+    {
+
+        castleHealth -= damage;
+        healthText.text = castleHealth.ToString();
 
         if (castleHealth <= 0)
         {
-            print("Castle is destroyed");
             Destroy(gameObject);
         }
     }

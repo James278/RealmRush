@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638067308760374}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 52.36869, y: 3.5, z: 22.384533}
+  m_LocalPosition: {x: 32.163204, y: 10.5, z: 12.095482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4102508897513438}
@@ -185,7 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d9a6983409df140a107f968456a829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenMovement: 0.39
+  timeBetweenMovement: 0.5
+  timeBetweenAttack: 2
   enemyPath: []
   playerCastle: {fileID: 0}
 --- !u!114 &114258695741353054
@@ -827,7 +828,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 6
+    type: 4
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}

@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour {
     [Range(0f, 10f)]
     [SerializeField] float timeBetweenMovement = 1;
 
+    [SerializeField] int timeBetweenAttack = 3;
+
     [SerializeField] List<Waypoint> enemyPath;
 
     public PlayerCastle playerCastle;
@@ -25,14 +27,24 @@ public class EnemyMovement : MonoBehaviour {
 
     IEnumerator MoveEnemy(List<Waypoint> path)
     {
+
         foreach (Waypoint waypoint in path)
         {
             this.transform.position = waypoint.transform.position + new Vector3(5f, 0f, 10f);
             yield return new WaitForSeconds(timeBetweenMovement);
         }
 
-        playerCastle.DecreaseHealth();
+        StartCoroutine(DamageCastle());
 
+    }
+
+    IEnumerator DamageCastle()
+    {
+        while (true)
+        {
+            playerCastle.DecreaseHealth(1);
+            yield return new WaitForSeconds(timeBetweenAttack);
+        }
     }
 
 }
