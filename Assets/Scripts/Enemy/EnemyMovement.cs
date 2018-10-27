@@ -40,9 +40,9 @@ public class EnemyMovement : MonoBehaviour {
 
     IEnumerator DamageCastle()
     {
-        while (true)
+        while (playerCastle)
         {
-            playerCastle.DecreaseHealth(1);
+            playerCastle.DamageCastle(1);
             yield return new WaitForSeconds(timeBetweenAttack);
         }
     }

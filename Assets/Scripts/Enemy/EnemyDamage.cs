@@ -4,35 +4,53 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour {
 
+    [SerializeField] int healthPoints = 5;
+
+    [SerializeField] AudioClip arrowImpactSFX;
+    [SerializeField] DeathSFXHost deathSFXPrefab;
+
     [SerializeField] Collider enemyCollider;
     [SerializeField] ParticleSystem deathBlood;
 
-    [SerializeField] int healthPoints = 5;
-
     [SerializeField] ParticleSystem blood;
+
+    Scorekeeper score;
+
+    AudioSource audioSource;
 
     private void OnParticleCollision(UnityEngine.GameObject other)
     {
+        score = FindObjectOfType<Scorekeeper>();
+
+        audioSource = GetComponent<AudioSource>();
 
         blood.Play();
+        audioSource.PlayOneShot(arrowImpactSFX);
 
         if (healthPoints > 1) {
             healthPoints--;
         }
-        else 
+        else
         {
-            var deathBloodFX = Instantiate(deathBlood, transform.position + new Vector3(0f, 2f, 0f), Quaternion.identity);
-            deathBloodFX.Play();
+            score.ScoreIncrease();
 
-            float deathFXDelay = deathBloodFX.main.duration + 0.2f;
+            DeathFX();
 
-            Destroy(deathBloodFX.gameObject, deathFXDelay);
+            Instantiate(deathSFXPrefab, transform.position, Quaternion.identity);
+
             Destroy(gameObject);
         }
 
-        
+
     }
 
- 
+    private void DeathFX()
+    {
+        var deathBloodFX = Instantiate(deathBlood, transform.position + new Vector3(0f, 2f, 0f), Quaternion.identity);
+        deathBloodFX.Play();
+
+        float deathFXDelay = deathBloodFX.main.duration + 0.2f;
+        Destroy(deathBloodFX.gameObject, deathFXDelay);
+    }
 
 }

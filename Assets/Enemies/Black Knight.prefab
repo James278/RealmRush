@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114121554432070310}
   - component: {fileID: 114258695741353054}
   - component: {fileID: 54689596195642438}
+  - component: {fileID: 82273754976561998}
   m_Layer: 0
   m_Name: Black Knight
   m_TagString: Untagged
@@ -174,6 +175,101 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 11, z: 5.38}
   m_Center: {x: 0, y: 5.5, z: -2.97}
+--- !u!82 &82273754976561998
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638067308760374}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.446
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114121554432070310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d9a6983409df140a107f968456a829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenMovement: 0.5
+  timeBetweenMovement: 0.21
   timeBetweenAttack: 2
   enemyPath: []
   playerCastle: {fileID: 0}
@@ -200,10 +296,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a268096da1fb740b59380fd8be3d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPoints: 4
+  arrowImpactSFX: {fileID: 8300000, guid: 84b3d6a05e533a146bf94b5fdfcad5ff, type: 3}
+  deathSFXPrefab: {fileID: 114330897418635380, guid: 7fa68baa77d35de4d86d891d45eb3254,
+    type: 2}
   enemyCollider: {fileID: 65529057570014580}
   deathBlood: {fileID: 198998869185713844, guid: a8d3b4ecafb68dd4198b2ba1be021f0b,
     type: 2}
-  healthPoints: 4
   blood: {fileID: 198965500819759010}
 --- !u!198 &198965500819759010
 ParticleSystem:

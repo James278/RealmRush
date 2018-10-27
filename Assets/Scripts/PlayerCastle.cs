@@ -9,21 +9,31 @@ public class PlayerCastle : MonoBehaviour {
 
     [SerializeField] Text healthText;
 
+    [SerializeField] ParticleSystem castleDestroyedPrefab;
+
+    [SerializeField] AudioClip swordHit;
+
     private void Start()
     {
         healthText.text = castleHealth.ToString();
     }
 
-    public void DecreaseHealth(int damage)
+    public void DamageCastle(int damage)
     {
+        GetComponent<AudioSource>().PlayOneShot(swordHit);
 
-        castleHealth -= damage;
-        healthText.text = castleHealth.ToString();
+        DecreaseHealth(damage);
 
         if (castleHealth <= 0)
         {
+            Instantiate(castleDestroyedPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
 
+    private void DecreaseHealth(int damage)
+    {
+        castleHealth -= damage;
+        healthText.text = castleHealth.ToString();
+    }
 }

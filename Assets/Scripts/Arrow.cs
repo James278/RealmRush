@@ -10,6 +10,8 @@ public class Arrow : MonoBehaviour {
     [SerializeField] float attackRange = 5f;
     [SerializeField] ParticleSystem theArrow;
 
+    [SerializeField] AudioClip arrowSFX;
+
     // States of each tower
     Transform targetEnemy;
 
@@ -17,7 +19,6 @@ public class Arrow : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
 		
 	}
 	
@@ -87,6 +88,7 @@ public class Arrow : MonoBehaviour {
     {
         var emissionModule = theArrow.emission;
         emissionModule.enabled = isActive;
+        
     }
 
 }
